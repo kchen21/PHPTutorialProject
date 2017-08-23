@@ -1,0 +1,21 @@
+{
+    "name": "PHP Tutorial Project",
+    "description": "A simple PHP application created without using a framework",
+    "keywords": ["tutorial", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kenneth Chen",
+            "email": "kennethchendbgt@gmail.com",
+            "role": "Creator / Main Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPTutorialProject\\": "src/"
+        }
+    }
+}
