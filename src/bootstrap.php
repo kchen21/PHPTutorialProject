@@ -22,5 +22,19 @@
   }
   $whoops->register();
 
-  throw new \Exception;
+  $request = new \Http\HttpRequest($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+  $response = new \Http\HttpResponse; // stores response data
+
+  // $content = '<h1>Hello World</h1>';
+  // $response->setContent($content);
+
+  $response->setContent('404 - Page not found');
+  $response->setStatusCode(404);
+
+  // required in order to send the response data to the browser
+  foreach ($response->getHeaders() as $header) {
+    header($header, false); // setting the second argument to true will overwrite existing headers
+  }
+
+  echo $response->getContent();
 ?>
