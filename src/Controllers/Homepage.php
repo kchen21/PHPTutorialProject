@@ -5,20 +5,25 @@
 
   use Http\Request;
   use Http\Response;
+  use PHPTutorialProject\Template\Renderer;
 
   class Homepage {
     private $request;
     private $response;
+    private $renderer;
 
-    public function __construct(Request $request, Response $response) {
+    public function __construct(Request $request, Response $response, Renderer $renderer) {
       $this->request = $request;
       $this->response = $response;
+      $this->renderer = $renderer;
     }
 
     public function show() {
-      $content = '<h1>Hello World</h1>';
-      $content .= 'Hello ' . $this->request->getParameter('name', 'stranger');
-      $this->response->setContent($content);
+      $data = [
+        'name' => $this->request->getParameter('name', 'stranger')
+      ];
+      $html = $this->renderer->render('Hello {{name}}', $data);
+      $this->response->setContent($html);
     }
   }
 

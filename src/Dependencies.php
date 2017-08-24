@@ -16,5 +16,7 @@
   $injector->alias('Http\Response', 'Http\HttpResponse');
   $injector->share('Http\HttpResponse');
 
+  $injector->alias('PHPTutorialProject\Template\Renderer', 'PHPTutorialProject\Template\MustacheRenderer');
+
   return $injector;
 ?>
