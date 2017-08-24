@@ -25,15 +25,14 @@
   $request = new \Http\HttpRequest($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
   $response = new \Http\HttpResponse; // stores response data
 
-  // Register the application's available routes
-  $dispatcher = \FastRoute\simpleDispatcher(function (\FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/hello-world', function () {
-      echo 'Hello World';
-    });
-    $r->addRoute('GET', '/another-route', function () {
-      echo 'This works too';
-    });
-  });
+  $routeDefinitionCallback = function (\FastRoute\RouteCollector $r) {
+    $routes = include('Routes.php');
+    foreach ($routes as $route) {
+      $r->addRoute($route[0], $route[1], $route[2]);
+    }
+  };
+
+  $dispatcher = \FastRoute\simpleDispatcher($routeDefinitionCallback);
 
   // Call the dispatcher and execute the appropriate part of the switch statement
   $routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getPath());
