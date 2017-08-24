@@ -25,5 +25,12 @@
     ]
   ]);
 
+  $injector->define('PHPTutorialProject\Page\FilePageReader', [
+    ':pageFolder' => __DIR__ . '/../pages'
+  ]);
+
+  $injector->alias('PHPTutorialProject\Page\PageReader', 'PHPTutorialProject\Page\FilePageReader');
+  $injector->share('PHPTutorialProject\Page\FilePageReader');
+
   return $injector;
 ?>
