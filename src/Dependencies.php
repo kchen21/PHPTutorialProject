@@ -16,7 +16,7 @@
   $injector->alias('Http\Response', 'Http\HttpResponse');
   $injector->share('Http\HttpResponse');
 
-  $injector->alias('PHPTutorialProject\Template\Renderer', 'PHPTutorialProject\Template\MustacheRenderer');
+  // $injector->alias('PHPTutorialProject\Template\Renderer', 'PHPTutorialProject\Template\MustacheRenderer');
   $injector->define('Mustache_Engine', [
     ':options' => [
       'loader' => new Mustache_Loader_FilesystemLoader(dirname(__DIR__) . '/templates', [
@@ -31,6 +31,13 @@
 
   $injector->alias('PHPTutorialProject\Page\PageReader', 'PHPTutorialProject\Page\FilePageReader');
   $injector->share('PHPTutorialProject\Page\FilePageReader');
+
+  $injector->alias('PHPTutorialProject\Template\Renderer', 'PHPTutorialProject\Template\TwigRenderer');
+  $injector->delegate('Twig_Environment', function () use ($injector) { // We use delegate to give the responsibility of instantiating a class to a function
+    $loader = new Twig_Loader_Filesystem(dirname(__DIR__) . '/templates');
+    $twig = new Twig_Environment($loader);
+    return $twig;
+  });
 
   return $injector;
 ?>
