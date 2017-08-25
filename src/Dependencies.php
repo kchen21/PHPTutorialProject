@@ -39,5 +39,7 @@
     return $twig;
   });
 
+  $injector->alias('PHPTutorialProject\Template\FrontendRenderer', 'PHPTutorialProject\Template\FrontendTwigRenderer');
+
   return $injector;
 ?>

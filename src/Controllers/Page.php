@@ -4,7 +4,7 @@
   namespace PHPTutorialProject\Controllers;
 
   use Http\Response;
-  use PHPTutorialProject\Template\Renderer;
+  use PHPTutorialProject\Template\FrontendRenderer;
   use PHPTutorialProject\Page\PageReader;
   use PHPTutorialProject\Page\InvalidPageException;
 
@@ -13,7 +13,7 @@
     private $renderer;
     private $pageReader;
 
-    public function __construct(Response $response, Renderer $renderer, PageReader $pageReader) {
+    public function __construct(Response $response, FrontendRenderer $renderer, PageReader $pageReader) {
       $this->response = $response;
       $this->renderer = $renderer;
       $this->pageReader = $pageReader;
