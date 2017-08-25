@@ -20,7 +20,8 @@
 
     public function show() {
       $data = [
-        'name' => $this->request->getParameter('name', 'stranger')
+        'name' => $this->request->getParameter('name', 'stranger'),
+        'menuItems' => [['href' => '/', 'text' => 'Homepage']]
       ];
       $html = $this->renderer->render('Homepage', $data);
       $this->response->setContent($html);
