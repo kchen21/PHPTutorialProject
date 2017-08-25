@@ -41,5 +41,7 @@
 
   $injector->alias('PHPTutorialProject\Template\FrontendRenderer', 'PHPTutorialProject\Template\FrontendTwigRenderer');
 
+  $injector->alias('PHPTutorialProject\Menu\MenuReader', 'PHPTutorialProject\Menu\ArrayMenuReader');
+
   return $injector;
 ?>
